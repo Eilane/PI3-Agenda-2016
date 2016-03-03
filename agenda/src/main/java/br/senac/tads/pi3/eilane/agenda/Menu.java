@@ -5,6 +5,8 @@
  */
 package br.senac.tads.pi3.eilane.agenda;
 
+import java.util.Scanner;
+
 /**
  *
  * @author iosato
