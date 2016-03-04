@@ -153,15 +153,18 @@ public class Agenda {
 
         try {
             Scanner scanner = new Scanner(System.in);
+            Menu menu2 = new Menu();
 
+            int escolha = menu2.alterarDados();
+            
             System.out.println("Digite a opção a ser alterada");
-            int opcao = scanner.nextInt();
+            
 
-            while (opcao != 0) {
+            while (escolha != 0) {
 
-                this.idContato = opcao;
+                this.idContato = escolha;
 
-                switch (opcao) {
+                switch (escolha) {
 
                     case 1:
 
@@ -236,11 +239,11 @@ public class Agenda {
                         break;
 
                     default:
-                        opcao = 0;
+                        escolha = 0;
                         break;
 
                 }
-                opcao = 0;
+                escolha = 0;
 
             }
 
