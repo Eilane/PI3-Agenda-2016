@@ -155,16 +155,14 @@ public class Agenda {
             Scanner scanner = new Scanner(System.in);
             Menu menu2 = new Menu();
 
-            int escolha = menu2.alterarDados();
+            int escolha = menu2.opcaoAlterarDados();
             
-            System.out.println("Digite a opção a ser alterada");
-            
+            int tipoDado = menu2.alterarDados();
+            this.idContato = escolha;
 
-            while (escolha != 0) {
-
-                this.idContato = escolha;
-
-                switch (escolha) {
+            while (tipoDado != 0) {
+                
+                switch (tipoDado) {
 
                     case 1:
 
@@ -207,7 +205,7 @@ public class Agenda {
                     case 3:
                         System.out.println("Digite o Telefone ex.(11 95666-7890): ");
                         Scanner inputTelefone = new Scanner(System.in);
-                        this.telefone = inputTelefone.next();
+                        this.telefone = inputTelefone.nextLine();
                         String tel = "UPDATE TB_CONTATO "
                                 + "SET VL_TELEFONE = ?"
                                 + "WHERE ID_CONTATO = ?";
@@ -239,11 +237,11 @@ public class Agenda {
                         break;
 
                     default:
-                        escolha = 0;
+                        tipoDado = 0;
                         break;
 
                 }
-                escolha = 0;
+                tipoDado = 0;
 
             }
 

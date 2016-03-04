@@ -50,15 +50,25 @@ public class Menu {
                     break;
 
                 case 3:
+                    
                     agenda.editarContatos();
                     System.out.println("Edição realizada com sucesso!");
                     System.out.println("");
                     break;
 
                 case 4:
-                    agenda.excluirContato(1); // consertar para não ter que passar por parâmetro
+                    agenda.listarContatos();
+                    System.out.println("");
+                    Scanner input = new Scanner (System.in);
+                    
+                    System.out.println("Digite o id do contato");
+                    int id = input.nextInt();
+
+                    Boolean result = agenda.excluirContato(id); // consertar para não ter que passar por parâmetro
+                    if(result){
                     System.out.println("Exclusão realizada com sucesso!");
                     System.out.println("");
+                    }
                     break;
 
                 default:
@@ -104,8 +114,7 @@ public class Menu {
 
         System.out.println("");
         System.out.println("#################################################################");
-        System.out.println("#################################################################");
-        System.out.println("############################## MENU #############################");
+        System.out.println("############################## Oções#############################");
         System.out.println("#################################################################");
         System.out.println("#################### (1)  Nome               ####################");
         System.out.println("#################### (2)  Data de Nascimento ####################");
@@ -113,14 +122,29 @@ public class Menu {
         System.out.println("#################### (4)  Email              ####################");
         System.out.println("#################### (0)  Sair               ####################");
         System.out.println("#################################################################");
-        System.out.println("#################################################################");
-        System.out.println("#################################################################");
         System.out.println("");
 
-        do {
+        do {          
+            
             System.out.print("Digite a opção desejada: ");
             this.setEscolha(input.nextInt());
             System.out.println("");
+
+        } while (this.getEscolha() < 0 || this.getEscolha() > 4);
+        return this.getEscolha();
+    }
+    
+    
+    public int opcaoAlterarDados() {
+        
+        do {          
+            
+            Agenda agenda = new Agenda();
+            
+            agenda.listarContatos();
+            System.out.println("");
+            System.out.print("Digite o ID do contato: ");
+            this.setEscolha(input.nextInt());         
         } while (this.getEscolha() < 0 || this.getEscolha() > 4);
         return this.getEscolha();
     }
