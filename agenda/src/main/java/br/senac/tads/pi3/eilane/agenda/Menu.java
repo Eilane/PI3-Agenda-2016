@@ -44,7 +44,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    agenda.CadastrarPessoa();// consertar para não ter que passar por parâmetro
+                    agenda.CadastrarPessoa("igOR", "2014-11-25", "11 94545-7777", "iGOR@SPREAD.COM");// consertar para não ter que passar por parâmetro
                     System.out.println("Cadastro realizado com sucesso!");
                     System.out.println("");
                     break;
@@ -64,8 +64,8 @@ public class Menu {
                     System.out.println("Digite o id do contato");
                     int id = input.nextInt();
 
-                    Boolean result = agenda.excluirContato(id); // consertar para não ter que passar por parâmetro
-                    if(result){
+                    Boolean result = agenda.excluirContato(id);
+                    if(result = true){
                     System.out.println("Exclusão realizada com sucesso!");
                     System.out.println("");
                     }
@@ -145,7 +145,7 @@ public class Menu {
             System.out.println("");
             System.out.print("Digite o ID do contato: ");
             this.setEscolha(input.nextInt());         
-        } while (this.getEscolha() < 0 || this.getEscolha() > 4);
+        } while (this.getEscolha() < 0 || this.getEscolha() > 1000);
         return this.getEscolha();
     }
 
