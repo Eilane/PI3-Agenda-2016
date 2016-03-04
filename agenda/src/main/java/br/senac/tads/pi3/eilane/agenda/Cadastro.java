@@ -7,7 +7,6 @@ package br.senac.tads.pi3.eilane.agenda;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -21,27 +20,23 @@ import java.util.logging.Logger;
  */
 public class Cadastro {
 
-    public void CadastrarPessoa() {
+    public void CadastrarPessoa(String nome, String dt_nasc, String telefone, String email) {
         Agenda conexao = new Agenda();
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT ID_CONTATO, NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL FROM TB_CONTATO";
+        DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+        String dt_cadastro = "2016-01-01";
+        
+        
+        String sql = "INSERT INTO TB_CONTATO (NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL,DT_CADASTRO) VALUES('"
+                +nome+ "' , '" + dt_nasc + "'" + " , '" +telefone+"' , '"+email+ "' , '" +dt_cadastro+"');";
         try {
             conn = conexao.obterConexao();
             stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(sql);
+              
 
-            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-
-            while (resultados.next()) {
-                Long id = resultados.getLong("ID_CONTATO");
-                String nome = resultados.getString("NM_CONTATO");
-                Date dataNasc = resultados.getDate("DT_NASCIMENTO");
-                String email = resultados.getString("VL_EMAIL");
-                String telefone = resultados.getString("VL_TELEFONE");
-                System.out.println(String.valueOf(id) + ", " + nome + ", " + formatadorData.format(dataNasc) + ", " + email + ", " + telefone);
-            }
+            stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,5 +59,5 @@ public class Cadastro {
             }
         }
     }
-    
+
 }
