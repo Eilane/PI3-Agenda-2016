@@ -74,13 +74,13 @@ public class Menu {
                 default:
                     System.out.println("Obrigado. Seu Mané!!!");
                     System.out.println("");
-                    opcao = 0;
+                    opcao = -1;
                     break;
 
             }
-            opcao = -1;
+            //opcao = -1;
 
-        } while (opcao != 0);
+        } while (opcao == 0);
 
     }
 
