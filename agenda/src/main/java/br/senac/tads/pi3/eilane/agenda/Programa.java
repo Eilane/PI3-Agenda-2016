@@ -2,7 +2,7 @@ package br.senac.tads.pi3.eilane.agenda;
 
 /**
  *
- * @author Eilane
+ * @author Eilane S
  * @author Igor Sato
  */
 
