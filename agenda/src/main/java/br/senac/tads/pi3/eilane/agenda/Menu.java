@@ -44,7 +44,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    agenda.CadastrarPessoa("Teste", "1111-11-11", "11 1111-1111", "agenda@senac.br");// consertar para não ter que passar por parâmetro
+                    agenda.CadastrarPessoa();// consertar para não ter que passar por parâmetro
                     System.out.println("Cadastro realizado com sucesso!");
                     System.out.println("");
                     break;
