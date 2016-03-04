@@ -56,5 +56,30 @@ public class Menu {
         return this.getEscolha();
     }
     
+    public int alterarDados(Scanner input, Opcao o) {   //chama o logo inicial
+
+        System.out.println("");
+        System.out.println("#################################################################");
+        System.out.println("#################################################################");
+        System.out.println("############################## MENU #############################");
+        System.out.println("#################################################################");
+        System.out.println("#################### (1)  Buscar Contato     ####################");
+        System.out.println("#################### (2)  Cadastrar Contato  ####################");
+        System.out.println("#################### (3)  Editar Contato     ####################");
+        System.out.println("#################### (4)  Excluir Contato    ####################");
+        System.out.println("#################### (0)  Sair               ####################");
+        System.out.println("#################################################################");
+        System.out.println("#################################################################");
+        System.out.println("#################################################################");
+        System.out.println("");
+
+        do {
+            System.out.print("Digite a opção desejada: ");
+            this.setEscolha(input.nextInt());
+            System.out.println("");
+        } while (this.getEscolha() < 0 || this.getEscolha() > 4);
+        return this.getEscolha();
+    }
+    
     
 }
