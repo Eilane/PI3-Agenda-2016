@@ -72,7 +72,7 @@ public class Menu {
                     break;
 
                 default:
-                    System.out.println("Obrigado. Até logo!!!");
+                    System.out.println("Obrigado. Seu Mané!!!");
                     System.out.println("");
                     opcao = 0;
                     break;
