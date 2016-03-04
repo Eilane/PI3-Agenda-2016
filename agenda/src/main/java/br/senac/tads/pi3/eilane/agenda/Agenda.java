@@ -43,7 +43,7 @@ public class Agenda {
 
         // Passo 2: Abrir a conexão 
         conn = DriverManager.getConnection( //SecurityMechanism - padrão que define que será informado usuário e senha
-                "jdbc:derby://localhost:1527/agendadb;SecurityMechanism=3",
+                "jdbc:derby://localhost:1527/agendabd;SecurityMechanism=3",
                 "app", // usuario 
                 "app");// senha 
 
@@ -112,7 +112,7 @@ public class Agenda {
         System.out.println("Digite o nome: ");
         nome = tc.next();
 
-        System.out.println("Digite a data de nascimento - exemplo 2000-01-01: ");
+        System.out.println("Digite a data de nascimento - exemplo 01-01-2015 ");
         dt_nasc = tc.next();
 
         
@@ -123,7 +123,8 @@ public class Agenda {
         email = tc.next();
         
         SimpleDateFormat formdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Formata data de cadastro
-
+        DateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+        
         String sql = "INSERT INTO TB_CONTATO (NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL, DT_CADASTRO)VALUES(?,?,?,?,?)";
 
         try {
@@ -131,7 +132,7 @@ public class Agenda {
             PreparedStatement statement = conn.prepareStatement(sql);//
 
             statement.setString(1, nome);
-            statement.setString(2, dt_nasc);
+            statement.setString(2, df.format(dt_nasc));
             statement.setString(3, telefone);
             statement.setString(4, email);
             statement.setString(5, formdate.format(Calendar.getInstance().getTime()));
@@ -202,7 +203,7 @@ public class Agenda {
                         break;
 
                     case 2:
-                        System.out.println("Digite a Data de Nascimento ex.(27/02/1999: ");
+                        System.out.println("Digite a Data de Nascimento ex.2000-01-01 ");
                         Scanner inputDataNasc = new Scanner(System.in);
                         setDataNasc(inputDataNasc.next());
 
