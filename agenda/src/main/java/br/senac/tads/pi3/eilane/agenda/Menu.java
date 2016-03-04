@@ -100,7 +100,7 @@ public class Menu {
         return this.getEscolha();
     }
 
-    public int alterarDados(int opcao) {
+    public int alterarDados() {
 
         System.out.println("");
         System.out.println("#################################################################");
