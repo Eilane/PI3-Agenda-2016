@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.tads.pi3.eilane.agenda;
 
 import java.sql.Connection;
@@ -21,8 +16,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author temp.cas
+ * @author Eilane
+ * @author Igor Sato
  */
+
 public class Agenda {
 
     //Atributos
