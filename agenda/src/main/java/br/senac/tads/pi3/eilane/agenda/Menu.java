@@ -28,10 +28,10 @@ public class Menu {
 
     // Switch case para Menu principal do programa
     public void inicioPrograma() {
-        
+        boolean continuar =true;
         Agenda agenda = new Agenda();
 
-        int opcao = 0;
+        int opcao;
 
         do {
 
@@ -71,17 +71,20 @@ public class Menu {
                     }
                     break;
 
+                    
+                
                 default:
                     System.out.println("Obrigado. Seu Mané!!!");
                     System.out.println("");
-                    opcao = -1;
+                    continuar = false;
                     break;
 
+                    
             }
-            //opcao = -1;
+           System.out.println("Aqui "+opcao);
 
-        } while (opcao == 0);
-
+        } while (continuar);
+         
     }
 
     // Exibe menu e lê a opção escolhida
