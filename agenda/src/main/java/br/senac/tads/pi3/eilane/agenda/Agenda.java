@@ -100,11 +100,27 @@ public class Agenda {
     //##########################################################################
     //CADASTRO DE CONTATOS
     //##########################################################################
-    public void CadastrarPessoa(String nome, String dt_nasc, String telefone, String email) {
+    public void CadastrarPessoa() {
         Agenda conexao = new Agenda();
         Statement stmt = null;
         Connection conn = null;
+        Scanner tc = new Scanner(System.in);
+        
+        String nome,  dt_nasc,  telefone,  email;
+        
+        System.out.println("Digite o nome: ");
+        nome = tc.next();
 
+        System.out.println("Digite a data de nascimento - exemplo 2000-01-01: ");
+        dt_nasc = tc.next();
+
+        
+        System.out.println("Digite o telefone: ");
+        telefone = tc.next();
+        
+        System.out.println("Digite o email: ");
+        email = tc.next();
+        
         SimpleDateFormat formdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Formata data de cadastro
 
         String sql = "INSERT INTO TB_CONTATO (NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL, DT_CADASTRO)VALUES(?,?,?,?,?)";
