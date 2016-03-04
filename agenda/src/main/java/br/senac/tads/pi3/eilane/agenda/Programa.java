@@ -12,11 +12,8 @@ public class Programa {
         Agenda agenda = new Agenda();
         
         agenda.listarContatos();
-        agenda.excluirContato(2);
-        
-        System.out.println("");
-        
-        agenda.listarContatos();
+        //agenda.excluirContato(2);
+        agenda.alterarContatos();
         
     }
   

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,9 +28,9 @@ public class Agenda {
     private int idContato;
     private String nomeContato;
     private String dataNasc;
-    private int telefone;
+    private String telefone;
     private String email;
-    
+
     private Connection conn = null;
 
     //##########################################################################
@@ -47,17 +48,6 @@ public class Agenda {
 
         return conn;
 
-    }
-    public PreparedStatement getPreparedStatement(String sql) {
-        if (conn == null) {
-       
-            try {
-                return conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            } catch (SQLException e) {
-                System.out.println("ERRO De SQL: " + e.getMessage() + "\nERROR CODE: " + e.getErrorCode());
-            }
-        }
-        return null;
     }
 
     //##########################################################################
@@ -105,28 +95,90 @@ public class Agenda {
     }
 
     //##########################################################################
-    public void alterarContatos(int opcao) {
-        Statement stmt = null;
+    public void alterarContatos() {
+        PreparedStatement pst = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_CONTATO SET NM_CONTATO WHERE ID_CONTATO = ?";
         try {
-            conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            stmt.executeQuery(sql);
+            Scanner scanner = new Scanner(System.in);
 
-            stmt.setString(1,nomeContato);
-            
-           
+            System.out.println("Digite a opção a ser alterada");
+            int opcao = scanner.nextInt();
+
+            while (opcao != 0) {
+                switch (opcao) {
+
+                    case 1:
+                        System.out.println("Digite Nome: ");
+                        Scanner inputNome = new Scanner(System.in);
+                        setNomeContato(inputNome.next());
+                        
+                        String nome = "UPDATE TB_CONTATO "
+                                + "SET NM_CONTATO  = ? "
+                                + "WHERE ID_CONTATO = ? ";
+                        
+                        conn = obterConexao();
+                        pst = conn.prepareStatement(nome);
+
+                        pst.setString(1, this.nomeContato);
+                        pst.setInt(2, this.idContato);
+
+                        scanner.reset();
+
+                        break;
+
+                    case 2:
+                        System.out.println("Digite a Data de Nascimento ex.(27/02/1999: ");
+                        Scanner inputDataNasc = new Scanner(System.in);
+                        this.dataNasc = inputDataNasc.next();
+                        String dtNasc = "UPDATE TB_CONTATO SET DT_NASCIMENTO WHERE ID_CONTATO = ?";
+                        conn = obterConexao();
+                        pst = conn.prepareStatement(dtNasc);
+                        pst.executeQuery(dtNasc);
+
+                        pst.setString(1, this.dataNasc);
+
+                        break;
+
+                    case 3:
+                        System.out.println("Digite o Telefone ex.(11 95666-7890): ");
+                        Scanner inputTelefone = new Scanner(System.in);
+                        this.telefone = inputTelefone.next();
+                        String tel = "UPDATE TB_CONTATO SET VL_TELEFONE WHERE ID_CONTATO = ?";
+                        conn = obterConexao();
+                        pst = conn.prepareStatement(tel);
+                        pst.executeQuery(tel);
+
+                        pst.setString(1, this.telefone);
+
+                        break;
+
+                    case 4:
+                        System.out.println("Digite o Email: ");
+                        Scanner inputEmail = new Scanner(System.in);
+                        this.email = inputEmail.next();
+                        String email = "UPDATE TB_CONTATO SET VL_EMAIL WHERE ID_CONTATO = ?";
+                        conn = obterConexao();
+                        pst = conn.prepareStatement(email);
+                        pst.executeQuery(email);
+
+                        pst.setString(1, this.email);
+
+                        break;
+
+                }
+                opcao = 0;
+
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (stmt != null) {
+            if (pst != null) {
                 try {
-                    stmt.close();
+                    pst.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -199,11 +251,11 @@ public class Agenda {
         this.dataNasc = dataNasc;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
