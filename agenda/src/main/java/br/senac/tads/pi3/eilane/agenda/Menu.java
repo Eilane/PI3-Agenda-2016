@@ -1,26 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.tads.pi3.eilane.agenda;
 
 import java.util.Scanner;
 
 /**
  *
- * @author iosato
+ * @author Eilane
+ * @author Igor Sato
  */
+
 public class Menu {
-    
+
     private int escolha;
-    
-    
+    private Scanner input = new Scanner(System.in);
+
     // Construtor
     public Menu() {
     }
-    
-    
+
     //Getter e Setters
     public void setEscolha(int escolha) {
         this.escolha = escolha;
@@ -29,16 +25,64 @@ public class Menu {
     public int getEscolha() {
         return escolha;
     }
-    
+
+    // Switch case para Menu principal do programa
+    public void inicioPrograma() {
+        
+        Agenda agenda = new Agenda();
+
+        int opcao = 0;
+
+        do {
+
+            opcao = menuInicial(); //Chama o método que exibe o menú gráfico
+
+            switch (opcao) {
+
+                case 1:
+                    agenda.listarContatos();
+                    break;
+
+                case 2:
+                    agenda.CadastrarPessoa("Teste", "1111-11-11", "11 1111-1111", "agenda@senac.br");// consertar para não ter que passar por parâmetro
+                    System.out.println("Cadastro realizado com sucesso!");
+                    System.out.println("");
+                    break;
+
+                case 3:
+                    agenda.editarContatos();
+                    System.out.println("Edição realizada com sucesso!");
+                    System.out.println("");
+                    break;
+
+                case 4:
+                    agenda.excluirContato(1); // consertar para não ter que passar por parâmetro
+                    System.out.println("Exclusão realizada com sucesso!");
+                    System.out.println("");
+                    break;
+
+                default:
+                    System.out.println("Obrigado. Até logo!!!");
+                    System.out.println("");
+                    opcao = 0;
+                    break;
+
+            }
+            opcao = -1;
+
+        } while (opcao != 0);
+
+    }
+
     // Exibe menu e lê a opção escolhida
-    public int menuInicial(Scanner input, Opcao o) {   //chama o logo inicial
+    public int menuInicial() {
 
         System.out.println("");
         System.out.println("#################################################################");
         System.out.println("#################################################################");
         System.out.println("############################## MENU #############################");
         System.out.println("#################################################################");
-        System.out.println("#################### (1)  Buscar Contato     ####################");
+        System.out.println("#################### (1)  Listar Contatos    ####################");
         System.out.println("#################### (2)  Cadastrar Contato  ####################");
         System.out.println("#################### (3)  Editar Contato     ####################");
         System.out.println("#################### (4)  Excluir Contato    ####################");
@@ -55,18 +99,18 @@ public class Menu {
         } while (this.getEscolha() < 0 || this.getEscolha() > 4);
         return this.getEscolha();
     }
-    
-    public int alterarDados(Scanner input, Opcao o) {   //chama o logo inicial
+
+    public int alterarDados(int opcao) {
 
         System.out.println("");
         System.out.println("#################################################################");
         System.out.println("#################################################################");
         System.out.println("############################## MENU #############################");
         System.out.println("#################################################################");
-        System.out.println("#################### (1)  Buscar Contato     ####################");
-        System.out.println("#################### (2)  Cadastrar Contato  ####################");
-        System.out.println("#################### (3)  Editar Contato     ####################");
-        System.out.println("#################### (4)  Excluir Contato    ####################");
+        System.out.println("#################### (1)  Nome               ####################");
+        System.out.println("#################### (2)  Data de Nascimento ####################");
+        System.out.println("#################### (3)  Telefone           ####################");
+        System.out.println("#################### (4)  Email              ####################");
         System.out.println("#################### (0)  Sair               ####################");
         System.out.println("#################################################################");
         System.out.println("#################################################################");
@@ -80,6 +124,21 @@ public class Menu {
         } while (this.getEscolha() < 0 || this.getEscolha() > 4);
         return this.getEscolha();
     }
-    
-    
+
+    public int cadastrarDados(int opcao) {
+
+        System.out.println("");
+        System.out.println("#################################################################");
+        System.out.println("##########################  CADASTRO  ###########################");
+        System.out.println("#################################################################");
+        System.out.println("");
+
+        do {
+            System.out.print("Digite a opção desejada: ");
+            this.setEscolha(input.nextInt());
+            System.out.println("");
+        } while (this.getEscolha() < 0 || this.getEscolha() > 4);
+        return this.getEscolha();
+    }
+
 }
