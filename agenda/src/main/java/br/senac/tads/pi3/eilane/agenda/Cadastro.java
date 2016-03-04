@@ -6,11 +6,11 @@
 package br.senac.tads.pi3.eilane.agenda;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,18 +25,22 @@ public class Cadastro {
         Statement stmt = null;
         Connection conn = null;
 
-        DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-        String dt_cadastro = "2016-01-01";
-        
-        
-        String sql = "INSERT INTO TB_CONTATO (NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL,DT_CADASTRO) VALUES('"
-                +nome+ "' , '" + dt_nasc + "'" + " , '" +telefone+"' , '"+email+ "' , '" +dt_cadastro+"');";
+        SimpleDateFormat formdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Formata data de cadastro
+
+        String sql = "INSERT INTO TB_CONTATO (NM_CONTATO, DT_NASCIMENTO, VL_TELEFONE, VL_EMAIL, DT_CADASTRO)VALUES(?,?,?,?,?)";
+
         try {
             conn = conexao.obterConexao();
-            stmt = conn.createStatement();
-              
+            PreparedStatement statement = conn.prepareStatement(sql);;//
 
-            stmt.executeUpdate(sql);
+            statement.setString(1, nome);
+            statement.setString(2, dt_nasc);
+            statement.setString(3, telefone);
+            statement.setString(4, email);
+            statement.setString(5, formdate.format(Calendar.getInstance().getTime()));
+
+            statement.execute(); // executa 
+            statement.close();  // Fecha
 
         } catch (SQLException ex) {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
