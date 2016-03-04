@@ -70,9 +70,10 @@ public class Agenda {
                 Long id = resultados.getLong("ID_CONTATO");
                 String nome = resultados.getString("NM_CONTATO");
                 Date dataNasc = resultados.getDate("DT_NASCIMENTO");
-                String email = resultados.getString("VL_EMAIL");
                 String telefone = resultados.getString("VL_TELEFONE");
-                System.out.println(String.valueOf(id) + ", " + nome + ", " + formatadorData.format(dataNasc) + ", " + email + ", " + telefone);
+                String email = resultados.getString("VL_EMAIL");
+                
+                System.out.println(String.valueOf(id) + ", " + nome + ", " + formatadorData.format(dataNasc) + ", " + telefone + ", " + email);
             }
 
         } catch (SQLException ex) {
@@ -242,6 +243,7 @@ public class Agenda {
 
                 }
                 tipoDado = 0;
+                this.idContato = 0;
 
             }
 
