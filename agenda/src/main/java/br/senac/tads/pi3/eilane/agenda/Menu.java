@@ -64,8 +64,8 @@ public class Menu {
                     System.out.println("Digite o id do contato");
                     int id = input.nextInt();
 
-                    Boolean result = agenda.excluirContato(id); // consertar para não ter que passar por parâmetro
-                    if(result){
+                    Boolean result = agenda.excluirContato(id);
+                    if(result = true){
                     System.out.println("Exclusão realizada com sucesso!");
                     System.out.println("");
                     }
